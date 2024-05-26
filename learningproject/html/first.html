@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPLORE</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #555;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            background-color: #777;
+        }
+
+        section {
+            padding: 20px;
+        }
+        .chart-container {
+            margin-top: 20px;
+        }
+        .services-images {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .services-images img {
+            max-width: 380px; /* Adjust the max-width as needed */
+            height: auto;
+        }
+
+        .student-details {
+            margin-top: 20px;
+        }
+
+        .student-details p {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img id="logo" src="gitam.jpg" alt="Logo" width="100">
+        <h1>GITAM NCC</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#aboutSection" id="aboutButton">About</a>
+        <a href="#servicesSection" id="serviceButton">Services</a>
+        <a href="#AccomplishmentsSection" id="AccomplishmentButton">Accomplishments</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <section>
+        <h2>EXPLORE NCC AT GITAM</h2>
+        <p>The National Cadet Corps (NCC) program at GITAM Hyderabad is more than an extracurricular activity; it's a vibrant community fostering discipline, leadership, and patriotism. Embracing the spirit of unity, service, and adventure, our NCC program stands as a symbol of excellence within the GITAM University..Join the NCC Family:
+Whether you're a current cadet, a prospective member, or a proud supporter, GITAM's NCC website is your gateway to staying informed, connected, and inspired. Explore the dynamic world of NCC at GITAM Hyderabad and be part of a community that strives for excellence, service, and nation-building.
+
+Jai Hind!</p>
+    </section>
+
+    <section id="aboutSection">
+        <h2>About Section</h2>
+        <p>### About GITAM NCC
+
+Welcome to the heart of discipline, leadership, and patriotism at GITAM Hyderabad - the National Cadet Corps (NCC). Established with a commitment to nurturing well-rounded individuals, GITAM's NCC unit stands as a beacon of excellence within the university community.
+
+Our Mission:
+At GITAM NCC, our mission is to instill the values of discipline, leadership, and service among our cadets. We aim to create a community of individuals who not only excel academically but also contribute meaningfully to society, embodying the spirit of the NCC.
+
+What Sets Us Apart:
+1. Holistic Development: GITAM NCC is more than a uniform and drill; it's a transformative experience. We believe in holistic development, shaping individuals physically, mentally, and emotionally.
+
+2. Leadership Opportunities: Our cadets are not just participants; they are leaders in the making. GITAM NCC provides numerous leadership opportunities, empowering cadets to take charge and make a positive impact.
+
+3. Adventure and Teamwork: From thrilling adventure activities to team-building exercises, we embrace challenges that foster camaraderie and resilience. GITAM NCC is a place where bonds are forged, and teamwork is celebrated.
+
+4. Service to Nation: Patriotism is at the core of GITAM NCC. Through various initiatives and community service projects, we strive to contribute meaningfully to the welfare of our nation.
+
+Your Journey with GITAM NCC:
+Whether you're a current cadet, a prospective member, or simply someone interested in our activities, GITAM NCC invites you to be part of our dynamic community. Explore the diverse range of activities, training programs, and events that make GITAM NCC a unique and enriching experience.
+
+Join Us in Shaping Leaders, Building Character, and Serving the Nation!
+
+</p>
+        <div class="chart-container">
+            <canvas id="cadetStrengthChart" width="50" height="10"></canvas>
+        </div>
+    </section>
+
+    <section id="servicesSection">
+        <h2>Services</h2>
+        <div class="services-images">
+            <img src="image1.jpg" alt="Service 1">
+            <img src="image2.jpg" alt="Service 2">
+            <img src="image3.jpg" alt="Service 3">
+        </div>
+    </section>
+
+    <section id="studentDetailsSection">
+        <h2>Student Details</h2>
+        <div class="student-details" id="studentDetails">
+            <!-- Student details will be populated here -->
+        </div>
+    </section>
+
+    <section id="AccomplishmentsSection">
+        <h2>Accomplishment Details</h2>
+
+        <button onclick="insertStudent()">Insert Student Document</button>
+        <div id="result"></div>
+
+    </section>
+
+
+    <script>
+        // Sample data for each academic year
+        var academicYears = ["2020-21", "2021-22", "2022-23", "2023-24"];
+        var cadetStrength = [100, 120, 150, 180]; // Replace with your actual data
+
+        // Get the canvas element
+        var ctx = document.getElementById('cadetStrengthChart').getContext('2d');
+
+        // Create a bar chart with a trendline
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: academicYears,
+                datasets: [{
+                    label: 'Number of Cadets',
+                    data: cadetStrength,
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                elements: {
+                    line: {
+                        tension: 5
+                    }
+                }
+            }
+        });
+
+        // Fetch and display student details
+        document.addEventListener('DOMContentLoaded', async function () {
+            const studentId = 'some-student-id'; // Replace with actual student ID or fetch from login
+            const response = await fetch(`/api/student/details/${studentId}`);
+            const student = await response.json();
+
+            document.getElementById('studentDetails').innerHTML = `
+                <p>Registration Number: ${student.regNumber}</p>
+                <p>Attendance Percentage: ${student.attendancePercentage}%</p>
+                <p>Camps Attended: ${student.campsAttended}</p>
+                <p>B Certificate Marks: ${student.bCertificateMarks}</p>
+                <p>C Certificate Marks: ${student.cCertificateMarks}</p>
+                <p>Position: ${student.position}</p>
+            `;
+        });
+
+        function insertStudent() {
+            fetch('/insert_student')
+                .then(response => response.json())
+                .then(data => {
+                    const resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = `
+                        <h2>Inserted Document Details:</h2>
+                        <p><strong>Student ID:</strong> ${data.student_id}</p>
+                        <p><strong>Name:</strong> ${data.name}</p>
+                        <p><strong>Attendance Percentage:</strong> ${data.attendance_percentage}</p>
+                        <p><strong>Number of Camps Attended:</strong> ${data.number_of_camps_attended}</p>
+                        <p><strong>Marks in B Certificate Exam:</strong> ${data.marks_B_certificate_exam}</p>
+                        <p><strong>Marks in C Certificate Exam:</strong> ${data.marks_C_certificate_exam}</p>
+                        <p><strong>Position Among Competitors:</strong> ${data.position_among_competitors}</p>
+                    `;
+                });
+        }
+    </script>
+</body>
+</html>
